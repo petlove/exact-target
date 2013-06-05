@@ -26,6 +26,39 @@ fragile.
 This gem endeavors to take some of the pain out of the process of
 sending triggered email.
 
+### Configuration
+
+```ruby
+ExactTarget.configure do |config|
+  config.username = 'test'
+  config.password = 'test'
+  config.server = 'webservice.exacttarget.com'
+end
+```
+
+`server` is the ExactTarget server your account is assigned to,
+usually one of `webservice.exacttarget.com`,
+`webservice.s4.exacttarget.com` or `webservice.s6.exacttarget.com`
+
+### Triggering an Email
+
+```ruby
+trigger = ExactTarget::TriggeredSend.new
+template = 42            # The template ID from the ExactTarget web interface
+email = 'foo@example.com # Recipient
+# The keys of the attributes hash are the name of the variables in the
+# ExactTarget template
+attributes = {
+  'Subject'=> '...',
+  'Email Address' => '...',
+  'First Name' => '...',
+  'Last Name' => '...',
+  'MobilePhone' => '...',
+  'Message' => '...'
+}
+trigger.send(template,email,attributes)
+```
+
 ## Contributing
 
 1. Fork it
