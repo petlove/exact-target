@@ -4,7 +4,7 @@ module ExactTarget
       ExactTarget.configuration
     end
 
-    def send(template,email,attributes)
+    def send!(template,email,attributes)
       call('CreateRequest', 
            params_for_triggered_send(template,email,attributes))
     end
