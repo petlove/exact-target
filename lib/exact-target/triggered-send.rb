@@ -1,3 +1,6 @@
+require 'savon'
+require 'map'
+
 module ExactTarget
   class TriggeredSend
     def config
@@ -22,6 +25,7 @@ module ExactTarget
     def client
       unless @client
         @client = Savon.client do
+          ssl_version :TLSv1
           endpoint "https://#{config.server}/Service.asmx"
           namespace NAMESPACE
           env_namespace :soap
